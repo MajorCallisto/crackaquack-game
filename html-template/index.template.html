@@ -59,6 +59,17 @@
                 flashvars, params, attributes);
             // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
             swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+        
+			 function thisMovie(movieName) {
+			     if (navigator.appName.indexOf("Microsoft") != -1) {
+			         return window[movieName];
+			     } else {
+			         return document[movieName];
+			     }
+			 }
+        	function JSMessage(value) {
+		         thisMovie("Main").JSMessage(value);
+		     }
         </script>
     </head>
     <body>

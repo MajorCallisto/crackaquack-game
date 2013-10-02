@@ -11,6 +11,8 @@ package
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
+	import flash.external.ExternalInterface;
+	import flash.system.Security;
 	import flash.ui.Keyboard;
 	
 	[SWF(backgroundColor="#000000")]
@@ -25,6 +27,8 @@ package
 		public function Main()
 		{
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
+			flash.system.Security.allowDomain("*");
+			data.init();
 		}
 		private function onAdded(e:Event):void{
 			
@@ -40,9 +44,10 @@ package
 			addChild(duck_03);
 			addChild(duck_04);
 			
-			stage.addEventListener(MouseEvent.CLICK, onClick);
+//			stage.addEventListener(MouseEvent.CLICK, onClick);
 		}
 		private function onClick(e:Event):void{
+			
 			data.dispatchEvent(new BaseEvent(BaseEvent.DUCK_FLAP, {duck_color:"green", direction:Math.random()*360}));
 			data.dispatchEvent(new BaseEvent(BaseEvent.DUCK_KILL, {duck_color:"red"}));
 			data.dispatchEvent(new BaseEvent(BaseEvent.DUCK_SPAWN, {duck_color:"yellow", flag_label:"Trevor"}));

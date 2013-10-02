@@ -9,15 +9,13 @@ package com.cttoronto.game.crackaquack.view
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
-	import assets_fla.mc_duck_sprite;
-	
 	public class DuckSprite extends MovieClip
 	{
 		private var assets_duck:mc_duck_sprite = new mc_duck_sprite();
 		private var _angle:Number = 0;
 		private var _distance:Number = 10;
 		private var last_x:Number = 0;
-		private var _live = true;
+		private var _live:Boolean = true;
 		private var _radian:Number;
 		private var asset_flag:mc_flag = new mc_flag();
 		private var _duck_color:String;
@@ -45,6 +43,15 @@ package com.cttoronto.game.crackaquack.view
 			data.addEventListener(BaseEvent.DUCK_FLAP, onFlap);
 			data.addEventListener(BaseEvent.DUCK_SPAWN, onSpawn);
 			data.addEventListener(BaseEvent.DUCK_KILL, onKill);
+			if (data.randomFly == true){
+				addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			}
+		}
+		private function onEnterFrame(e:Event):void{
+			if (Math.random() < 0.1){
+				angle = Math.random()*360;
+			}
+			flap();
 		}
 		private function onFlap(e:BaseEvent):void{
 			if (e.data.duck_color == duck_color){
