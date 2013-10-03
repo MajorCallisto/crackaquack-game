@@ -13,7 +13,7 @@ package com.cttoronto.game.crackaquack.view
 	{
 		private var assets_duck:mc_duck_sprite = new mc_duck_sprite();
 		private var _angle:Number = 0;
-		private var _distance:Number = 10;
+		private var _distance:Number =10;
 		private var last_x:Number = 0;
 		private var _live:Boolean = true;
 		private var _radian:Number;
@@ -72,15 +72,18 @@ package com.cttoronto.game.crackaquack.view
 		}
 		private function flap():void{
 			if (live == true){
+				if (alpha ==0){
+					TweenMax.to(this, 1, {alpha:1});
+				}
 				var xstep:Number = Math.cos(radian) * distance;
 				var ystep:Number = Math.sin(radian) * distance;
 				
 				this.x += xstep;
 				this.y += ystep;
-				if (this.x < this.width || this.x > stage.width - this.width){
+				if (this.x < assets_duck.width/2 || this.x > stage.fullScreenWidth - this.width){
 					this.x -= xstep*1.1;
 				}
-				if (this.y < this.height|| this.y >stage.height-this.height){
+				if (this.y < 150|| this.y >stage.fullScreenHeight-this.height/2){
 					this.y -= ystep*1.1;
 				}
 				
@@ -114,7 +117,6 @@ package com.cttoronto.game.crackaquack.view
 			this.x = stage.stageWidth/2;
 			this.y = stage.stageHeight/2;
 			this.alpha = 0;
-			TweenMax.to(this, 1, {alpha:1});
 		}
 		private function get live():Boolean{
 			return _live;

@@ -11,7 +11,7 @@ package com.cttoronto.game.crackaquack.model
 		
 		private static var instance:DataModel;
 		private static var allowInstantiation:Boolean = true;
-		private var _randomFly:Boolean = true;
+		private var _randomFly:Boolean = false;
 		
 		public function DataModel(target:IEventDispatcher=null)
 		{
@@ -33,7 +33,6 @@ package com.cttoronto.game.crackaquack.model
 			var be:BaseEvent = new BaseEvent($msg.event_type);
 			be.data = $msg.event_obj;
 			dispatchEvent(be);
-			trace("JSMESSAGE", $msg.event_obj.direction);
 		}
 
 		public function get randomFly():Boolean

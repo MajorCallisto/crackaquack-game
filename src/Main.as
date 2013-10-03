@@ -24,6 +24,7 @@ package
 		private var duck_04:DuckSprite = new DuckSprite("magenta");
 		
 		private var data:DataModel = DataModel.getInstance();
+		private var bg:mc_bg = new mc_bg();
 		public function Main()
 		{
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
@@ -35,7 +36,6 @@ package
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			
-			var bg:mc_bg = new mc_bg();
 			addChild(bg);
 			stage.addEventListener(KeyboardEvent.KEY_UP, onKey);
 			
@@ -43,8 +43,6 @@ package
 			addChild(duck_02);
 			addChild(duck_03);
 			addChild(duck_04);
-			
-//			stage.addEventListener(MouseEvent.CLICK, onClick);
 		}
 		private function onClick(e:Event):void{
 			
@@ -55,6 +53,12 @@ package
 		private function onKey(e:KeyboardEvent):void{
 			if (e.keyCode == Keyboard.F){;
 				stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+				
+				bg.width = stage.fullScreenWidth;
+				bg.scaleY = bg.scaleY;
+				if (bg.height > stage.fullScreenHeight){
+					bg.y = -(bg.height - stage.fullScreenHeight);
+				}
 			}
 		}
 	}

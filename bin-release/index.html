@@ -185,23 +185,18 @@
 	        console.log('toFlash_duckLeaderboardUpdate()',data);
 	    }
 	    function toFlash_hit(data){
-			testData = {"result":"SUCCESS","user":{"userName":"Christopher","password":"demo","score":0,"ranking":0,"type":"","socialId":0,"loggedIn":true,"registered":"true","hits":12,"roomId":"","active":false,"playerType":"hunter","uid":0,"color":"","_id":"524c6b0260e706034b000001","__v":0}}
-	        if (data.result == "SUCCESS"){
-				JSMessage({event_type:"DUCK_KILL", event_obj:{duck_color:data.user.color}});
-			}
+			JSMessage({event_type:"DUCK_KILL", event_obj:{duck_color:data.duck}});
 			console.log('toFlash_hit()',data);
 	    }
 	    function toFlash_spawn(data){
-			testData = {"result":"SUCCESS","user":{"userName":"Christopher","password":"demo","score":0,"ranking":0,"type":"","socialId":0,"loggedIn":true,"registered":"true","hits":12,"roomId":"","active":false,"playerType":"hunter","uid":0,"color":"","_id":"524c6b0260e706034b000001","__v":0}}
 	        if (data.result == "SUCCESS"){
 				JSMessage({event_type:"DUCK_SPAWN", event_obj:{duck_color:data.user.color, flag_label:data.user.userName}});
 			}
 			console.log('toFlash_spawn()',data);
 	    }
 	    function toFlash_flap(data){
-			testData = {"result":"SUCCESS","user":{"userName":"Christopher","password":"demo","score":0,"ranking":0,"type":"","socialId":0,"loggedIn":true,"registered":"true","hits":12,"roomId":"","active":false,"playerType":"hunter","uid":0,"color":"","_id":"524c6b0260e706034b000001","__v":0}}
 	        if (data.result == "SUCCESS"){
-				JSMessage({event_type:"DUCK_FLAP", event_obj:{duck_color:data.user.color, direction:data.user.direction}});
+				JSMessage({event_type:"DUCK_FLAP", event_obj:{duck_color:data.duck, direction:data.user.direction}});
 			}
 			console.log('toFlash_flap()',data);
 	    }
