@@ -46,6 +46,9 @@ package com.cttoronto.game.crackaquack.view
 			if (data.randomFly == true){
 				addEventListener(Event.ENTER_FRAME, onEnterFrame);
 			}
+			
+			flag_label = "";
+			resurrect();
 		}
 		private function onEnterFrame(e:Event):void{
 			if (Math.random() < 0.1){
@@ -55,7 +58,12 @@ package com.cttoronto.game.crackaquack.view
 		}
 		private function onFlap(e:BaseEvent):void{
 			if (e.data.duck_color == duck_color){
-				this.angle = e.data.direction;
+				if (e.data.direction == 888){
+					addEventListener(Event.ENTER_FRAME, onEnterFrame);
+				}else{
+					removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+					this.angle = e.data.direction;
+				}
 				flap();	
 			}
 		}
@@ -106,7 +114,7 @@ package com.cttoronto.game.crackaquack.view
 			live = false;
 //			angle = Math.random()*360;
 			assets_duck.gotoAndStop("shot");
-			TweenMax.to(this, 1.5,{ease:Linear.easeNone, onStart:setDeadSprite, delay:0.5, y:this.x + stage.stageHeight+this.height, onComplete:resurrect});
+			TweenMax.to(this, 1.5,{ease:Linear.easeNone, onStart:setDeadSprite, delay:0.5, y:this.x + stage.stageHeight+this.height});
 		}
 		private function setDeadSprite():void{
 			assets_duck.gotoAndStop("dead");
